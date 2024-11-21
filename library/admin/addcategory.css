@@ -1,0 +1,84 @@
+.content_d {
+    width: 80%;
+    margin: 30px auto;
+    background-color:aliceblue;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);    
+}
+
+.content_d h1 {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+form label {
+    text-align: left;
+    font-size: 1.1em;
+    color: #333;
+}
+
+form input,
+form select {
+    padding: 10px;
+    font-size: 1em;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+form input[type="text"] {
+    width: 100%;
+}
+
+form button {
+    padding: 12px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #45a049;
+}
+
+form a {
+    text-decoration: none;
+    color: #4CAF50;
+    font-size: 1em;
+    text-align: center;
+    display: block;
+    margin-top: 15px;
+}
+
+form a:hover {
+    color: #388E3C;
+}
+
+/* Error message */
+.error {
+    background-color: #f44336;
+    color: white;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.error a {
+    color: white;
+    text-decoration: underline;
+    font-weight: normal;
+}

@@ -1,0 +1,61 @@
+.content_a {
+    margin: 20px;
+}
+
+h2, h3 {
+    color: #333;
+}
+
+table {
+    width: 100%;
+    margin: 20px 0;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+    
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+
+thead {
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+td, th {
+    font-size: 14px;
+}
+
+button.delete-btn,button.decline-btn {
+    background-color: #e53935;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+button.delete-btn:hover,button.decline-btn:hover {
+    background-color: darkred;
+}
+
+button.approve-btn,button.edit-btn {
+    background-color: rgb(14, 231, 14);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+button.approve-btn:hover,button.edit-btn:hover {
+    background-color: rgb(20, 116, 9);
+}
+
+
