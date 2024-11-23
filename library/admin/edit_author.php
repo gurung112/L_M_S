@@ -21,7 +21,7 @@ if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
     // Fetch current author data
-    $sql = "SELECT * FROM author WHERE id = ?";
+    $sql = "SELECT * FROM author WHERE a_id = ?"; // Updated to 'a_id'
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $id);
     $stmt->execute();
@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'];
 
     // Update author in the database
-    $update_sql = "UPDATE author SET name = ?, updation_date = NOW() WHERE id = ?";
+    $update_sql = "UPDATE author SET a_name = ?, updation_date = NOW() WHERE a_id = ?"; // Updated to 'a_name' and 'a_id'
     $stmt = $conn->prepare($update_sql);
     $stmt->bind_param("si", $name, $id);
 
@@ -83,14 +83,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <form method="POST" action="edit_author.php?id=<?php echo $id; ?>">
                 <div class="form-group">
                     <label for="name">Author Name</label>
-                    <input type="text" name="name" id="name" value="<?php echo htmlspecialchars($author['name']); ?>" required>
+                    <input type="text" name="name" id="name" value="<?php echo htmlspecialchars($author['a_name']); ?>" required> <!-- Updated to 'a_name' -->
                 </div>
                 <button type="submit">Update Author</button>
             </form>
         </div>
     </div>
 </body>
-</html>
+</html>t7
 
 <?php
 $conn->close();

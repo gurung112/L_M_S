@@ -21,7 +21,7 @@ if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
     // Fetch current category data
-    $sql = "SELECT * FROM categories WHERE id = ?";
+    $sql = "SELECT * FROM categories WHERE c_id = ?"; // Updated to 'c_id'
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("i", $id);
     $stmt->execute();
@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $status = $_POST['status'];
 
     // Update category in the database
-    $update_sql = "UPDATE categories SET name = ?, status = ?, updation_date = NOW() WHERE id = ?";
+    $update_sql = "UPDATE categories SET c_name = ?, status = ?, updation_date = NOW() WHERE c_id = ?"; // Updated to 'c_name' and 'c_id'
     $stmt = $conn->prepare($update_sql);
     $stmt->bind_param("ssi", $name, $status, $id);
 
@@ -82,17 +82,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="content_e">
             <h1>Edit Category</h1>
 
-        <form method="POST" action="edit_category.php?id=<?php echo $id; ?>">
-            <div class="form-group">
-                <label for="name">Category Name</label>
-                <input type="text" name="name" id="name" value="<?php echo htmlspecialchars($category['name']); ?>" required>
-            </div>
-            <div class="form-group">
-                <label for="status">Status</label>
-                <input type="text" name="status" id="status" value="<?php echo htmlspecialchars($category['status']); ?>" required>
-            </div>
-            <button type="submit">Update Category</button>
-        </form>
+            <form method="POST" action="edit_category.php?id=<?php echo $id; ?>">
+                <div class="form-group">
+                    <label for="name">Category Name</label>
+                    <!-- Updated to use 'c_name' -->
+                    <input type="text" name="name" id="name" value="<?php echo htmlspecialchars($category['c_name']); ?>" required>
+                </div>
+                <div class="form-group">
+                    <label for="status">Status</label>
+                    <input type="text" name="status" id="status" value="<?php echo htmlspecialchars($category['status']); ?>" required>
+                </div>
+                <button type="submit">Update Category</button>
+            </form>
         </div>
     </div>
 </body>

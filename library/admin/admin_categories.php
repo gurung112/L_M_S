@@ -14,7 +14,7 @@ if (isset($_POST['search'])) {
 }
 
 // Build SQL query
-$sql = "SELECT * FROM categories WHERE name LIKE '%$search%'";
+$sql = "SELECT * FROM categories WHERE c_name LIKE '%$search%'"; // Updated to use 'c_name' column
 $result = $mysqli->query($sql);  // Execute the query and store the result
 
 ?>
@@ -67,14 +67,15 @@ $result = $mysqli->query($sql);  // Execute the query and store the result
                 <?php if ($result && $result->num_rows > 0) : ?>
                     <?php while ($row = $result->fetch_assoc()) : ?>
                         <tr>
-                            <td><?php echo $row['id']; ?></td>
-                            <td><?php echo $row['name']; ?></td>
+                            <td><?php echo $row['c_id']; ?></td> <!-- Updated to 'c_id' -->
+                            <td><?php echo $row['c_name']; ?></td> <!-- Updated to 'c_name' -->
                             <td><?php echo $row['status']; ?></td>
                             <td><?php echo $row['creation_date']; ?></td>
                             <td><?php echo $row['updation_date']; ?></td>
                             <td>
-                                <a class="edit-btn" href="edit_category.php?id=<?php echo $row['id']; ?>">Edit</a> | 
-                                <a class="delete-btn" href="delete_category.php?id=<?php echo $row['id']; ?>" onclick="return confirm('Are you sure you want to delete this category?')">Delete</a>
+                                <!-- Updated link to reflect the 'c_id' -->
+                                <a class="edit-btn" href="edit_category.php?id=<?php echo $row['c_id']; ?>">Edit</a> | 
+                                <a class="delete-btn" href="delete_category.php?id=<?php echo $row['c_id']; ?>" onclick="return confirm('Are you sure you want to delete this category?')">Delete</a>
                             </td>
                         </tr>
                     <?php endwhile; ?>

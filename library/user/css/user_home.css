@@ -1,0 +1,51 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    
+    height: 100px;
+    background-color: #333;
+    overflow: hidden;
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar h1 {
+    display: inline-block;
+    color: #fff;
+    margin: 0;
+    padding-right: 20px;
+}
+
+.navbar a {
+    float: right;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 15px;
+}
+
+.navbar a:hover {
+    background-color: #575757;
+    color: #fff;
+}
+
+/* Content Section */
+.content {
+    padding: 20px;
+    margin: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}

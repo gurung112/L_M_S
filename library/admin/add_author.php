@@ -7,27 +7,33 @@ if (!isset($_SESSION['user_id'])) {
 
 include('config.php');  // Include database connection
 
+// Check if the form is submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $name = trim($_POST['name']);
+    // Get the author name from the POST request and sanitize it
+    $a_name = trim($_POST['a_name']);  // Updated column name 'a_name'
     $creation_date = date('Y-m-d H:i:s');
-    $updation_date = $creation_date;  // Set the same time initially
+    $updation_date = $creation_date;  // Set the same time for updation
 
-    if (!empty($name)) {
-        $sql = "INSERT INTO author (name, creation_date, updation_date) VALUES (?, ?, ?)";
-        $stmt = $mysqli->prepare($sql);
-        $stmt->bind_param('sss', $name, $creation_date, $updation_date);
+    // Check if the author name is not empty
+    if (!empty($a_name)) {
+        // Prepare the SQL query to insert a new author into the database
+        $sql = "INSERT INTO author (a_name, creation_date, updation_date) VALUES (?, ?, ?)";
+        $stmt = $mysqli->prepare($sql); // Use $mysqli for the connection variable
+        $stmt->bind_param('sss', $a_name, $creation_date, $updation_date);
 
+        // Execute the query
         if ($stmt->execute()) {
             header('Location: admin_author.php');  // Redirect to the author management page
             exit;
         } else {
+            // Display error message if the insert fails
             $error_message = "Error adding author. Please try again.";
         }
     } else {
+        // Display error message if the author name is empty
         $error_message = "Author name cannot be empty.";
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -59,9 +65,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <p style="color:red;"><?php echo $error_message; ?></p>
         <?php endif; ?>
 
+        <!-- Form to add a new author -->
         <form method="POST" action="add_author.php">
-            <label for="name">Author Name:</label>
-            <input type="text" name="name" id="name" required>
+            <label for="a_name">Author Name:</label>  <!-- Use updated field name -->
+            <input type="text" name="a_name" id="a_name" required>  <!-- Use updated field name -->
             <button type="submit">Add Author</button>
         </form>
     </div>

@@ -10,19 +10,23 @@ if (!isset($_SESSION['user_id'])) {
 // Include database connection
 include('config.php');
 
-// Fetch the list of books
-$books_query = $mysqli->query("SELECT * FROM books");
-$books = $books_query->fetch_all(MYSQLI_ASSOC);
+// Fetch total books
+$total_books_result = $mysqli->query("SELECT COUNT(*) AS book_count FROM books");
+$total_books_data = $total_books_result->fetch_assoc();
+$total_books = $total_books_data['book_count'];
 
-// Fetch the list of book requests
-$requests_query = $mysqli->query("SELECT br.request_id, u.username, b.title, br.request_date, br.status 
-                                  FROM book_requests br
-                                  JOIN userss u ON br.user_id = u.user_id
-                                  JOIN books b ON br.book_id = b.book_id");
-$requests = $requests_query->fetch_all(MYSQLI_ASSOC);
+// Fetch total categories
+$total_categories_result = $mysqli->query("SELECT COUNT(*) AS category_count FROM categories");
+$total_categories_data = $total_categories_result->fetch_assoc();
+$total_categories = $total_categories_data['category_count'];
+
+// Fetch total authors
+$total_authors_result = $mysqli->query("SELECT COUNT(*) AS author_count FROM author");
+$total_authors_data = $total_authors_result->fetch_assoc();
+$total_authors = $total_authors_data['author_count'];
 
 // Fetch total users
-$total_users_result = $mysqli->query("SELECT COUNT(*) AS user_count FROM users");
+$total_users_result = $mysqli->query("SELECT COUNT(*) AS user_count FROM userss");
 $total_users_data = $total_users_result->fetch_assoc();
 $total_users = $total_users_data['user_count'];
 ?>
@@ -31,10 +35,65 @@ $total_users = $total_users_data['user_count'];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PEACE</title>
+    <title>PEACE Dashboard</title>
     <link rel="stylesheet" href="abc.css">
     <link rel="stylesheet" href="content.css">
-    <link rel="shortcut icon" href="image/abc.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="navbar.css">
+    <style>
+        .dashboard-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .card {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 200px;
+            height: 180px; /* Adjusted to fit the image */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-align: center;
+        }
+
+        .card img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 10px;
+        }
+
+        .card h3 {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .card p {
+            font-size: 24px;
+            font-weight: bold;
+            color: #007BFF;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Image size */
+        .card img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+        }
+    </style>
 </head>
 <body>
     <div class="heading">
@@ -50,33 +109,32 @@ $total_users = $total_users_data['user_count'];
         <a href="admin_usermanagement.php">User Management</a>
     </div>
     <div class="content">
-        <div class="content_a">
-            <!-- Display Dashboard Information -->
-
         <h2>Dashboard Overview</h2>
-        <p>Total Users: <?php echo $total_users; ?></p>
-
-        <!-- List of Books in the Library -->
-        <h3>Library Books</h3>
-        <table>
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Author</th>
-                    <th>Year</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($books as $book): ?>
-                <tr>
-                    <td><?php echo htmlspecialchars($book['title']); ?></td>
-                    <td><?php echo htmlspecialchars($book['author']); ?></td>
-                    <td><?php echo $book['year']; ?></td>
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+        <div class="dashboard-cards">
+            <div class="card" onclick="location.href='admin_library.php'">
+                <img src="../images/books.jpg" alt="Books">
+                <h3>Books</h3>
+                <p><?php echo $total_books; ?></p>
+            </div>
+            <div class="card" onclick="location.href='admin_categories.php'">
+                <img src="../images/category.png" alt="Categories">
+                <h3>Categories</h3>
+                <p><?php echo $total_categories; ?></p>
+            </div>
+            <div class="card" onclick="location.href='admin_author.php'">
+                <img src="../images/authors.png" alt="Authors">
+                <h3>Authors</h3>
+                <p><?php echo $total_authors; ?></p>
+            </div>
+            <div class="card" onclick="location.href='admin_usermanagement.php'">
+                <img src="../images/users.png" alt="Users">
+                <h3>Users</h3>
+                <p><?php echo $total_users; ?></p>
+            </div>
         </div>
     </div>
 </body>
 </html>
+<?php
+$mysqli->close();
+?>

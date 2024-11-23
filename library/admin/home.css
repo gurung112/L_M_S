@@ -1,54 +1,51 @@
-/* Reset some basic styles */
+
 body, html {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Styling for the navbar */
+
 .navbar {
-    position: fixed; /* Makes the navbar fixed at the top */
+    position: fixed;
     top: 0;
     left: 0;
-    width: 100%; /* Stretches navbar across the width of the viewport */
-    background-color: #333; /* Dark background for the navbar */
-    color: white; /* Text color for the navbar */
-    padding: 10px 20px; /* Adds padding inside the navbar */
-    display: flex; /* Makes it easy to align items */
+    width: 100%; 
+    background-color: #333; 
+    color: white; 
+    padding: 10px 20px; 
+    display: flex; 
     align-items: center;
-    justify-content: space-between; /* Spreads the items across the navbar */
-    z-index: 1000; /* Ensures it stays above other content */
+    justify-content: space-between; 
+    z-index: 1000; 
     height: 100px;
 }
 
-/* Navbar title styling */
 .navbar h1 {
     margin: 0;
     font-size: 24px;
 }
 
-/* Navbar links */
 .navbar a {
-    color: white; /* Link color */
-    text-decoration: none; /* Removes underline */
-    margin-left: 20px; /* Space between links */
+    color: white; 
+    text-decoration: none; 
+    margin-left: 20px; 
     font-size: 18px;
-    transition: color 0.3s; /* Smooth color transition on hover */
+    transition: color 0.3s; 
 }
 
-/* Hover effect for links */
+
 .navbar a:hover {
-    color: #f0a500; /* Highlight color on hover */
+    color: #f0a500; 
 }
 
-/* Content styling */
+
 .page {
-    margin-top: 80px; /* Pushes the content below the fixed navbar */
+    margin-top: 80px; 
     padding: 20px;
     font-size: 18px;
 }
 
-/* Responsive design */
 @media (max-width: 768px) {
     .navbar {
         flex-direction: column;
@@ -59,4 +56,3 @@ body, html {
         margin: 5px 0;
     }
 }
-

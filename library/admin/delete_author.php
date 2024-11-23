@@ -6,9 +6,9 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 $servername = "localhost";
-$username = "root"; // change to your DB username
-$password = ""; // change to your DB password
-$dbname = "lib"; // change to your DB name
+$username = "root"; // Change to your DB username
+$password = ""; // Change to your DB password
+$dbname = "lib"; // Change to your DB name
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -20,19 +20,19 @@ if ($conn->connect_error) {
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
 
-    // Delete category from the database (updated to use c_id)
-    $sql = "DELETE FROM categories WHERE c_id = ?"; // Changed 'id' to 'c_id'
-    $stmt = $conn->prepare($sql);
+    // Delete author from the database
+    $delete_sql = "DELETE FROM author WHERE a_id = ?";
+    $stmt = $conn->prepare($delete_sql);
     $stmt->bind_param("i", $id);
 
     if ($stmt->execute()) {
-        header("Location: admin_categories.php"); // Redirect back to categories list after deletion
+        header("Location: admin_author.php"); // Redirect back to authors list after deletion
         exit;
     } else {
-        echo "Error deleting category.";
+        echo "Error deleting author.";
     }
 } else {
-    echo "Category ID is required.";
+    echo "Author ID is required.";
 }
 
 $conn->close();

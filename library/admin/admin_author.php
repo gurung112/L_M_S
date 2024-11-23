@@ -14,7 +14,7 @@ if (isset($_POST['search'])) {
 }
 
 // Build SQL query for authors
-$sql = "SELECT * FROM author WHERE name LIKE '%$search%'";
+$sql = "SELECT * FROM author WHERE a_name LIKE '%$search%'"; // Updated to 'a_name'
 $result = $mysqli->query($sql);  // Execute the query and store the result
 ?>
 
@@ -66,13 +66,13 @@ $result = $mysqli->query($sql);  // Execute the query and store the result
                 <?php if ($result && $result->num_rows > 0) : ?>
                     <?php while ($row = $result->fetch_assoc()) : ?>
                         <tr>
-                            <td><?php echo $row['id']; ?></td>
-                            <td><?php echo $row['name']; ?></td>
+                            <td><?php echo $row['a_id']; ?></td> <!-- Updated to 'a_id' -->
+                            <td><?php echo $row['a_name']; ?></td> <!-- Updated to 'a_name' -->
                             <td><?php echo $row['creation_date']; ?></td>
                             <td><?php echo $row['updation_date']; ?></td>
                             <td>
-                                <a class="edit-btn" href="edit_author.php?id=<?php echo $row['id']; ?>">Edit</a> | 
-                                <a class="delete-btn" href="delete_author.php?id=<?php echo $row['id']; ?>" onclick="return confirm('Are you sure you want to delete this author?')">Delete</a>
+                                <a class="edit-btn" href="edit_author.php?id=<?php echo $row['a_id']; ?>">Edit</a> | 
+                                <a class="delete-btn" href="delete_author.php?id=<?php echo $row['a_id']; ?>" onclick="return confirm('Are you sure you want to delete this author?')">Delete</a>
                             </td>
                         </tr>
                     <?php endwhile; ?>

@@ -9,11 +9,13 @@ body {
     width: 100%;
     max-width: 400px;
     margin: 50px auto;
+    margin-bottom: 0px;
     background: #ffffff;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
 }
+
 
 h1 {
     text-align: left;
@@ -24,17 +26,6 @@ label {
     display: block;
     margin-top: 10px;
     font-weight: bold;
-}
-
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="tel"] {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
 }
 
 button {
@@ -71,5 +62,13 @@ button:hover {
 .container h2{
     color:black;
     text-align: center;
+}
+
+
+.container::placeholder {
+    font-size: 100px;  /* Set the font size */
+    color: #888;      /* Change the color of the placeholder */
+    font-family: Arial, sans-serif; /* Set the font */
+    font-style: italic; /* Change the style if needed */
 }
 

@@ -1,0 +1,22 @@
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"] {
+    width: 95%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+/* 
+.message {
+    color: green;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.error {
+    color: red;
+    font-weight: bold;
+    margin-bottom: 10px;
+} */
